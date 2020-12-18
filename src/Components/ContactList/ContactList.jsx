@@ -5,11 +5,11 @@ import style from "./ContactList.module.css"
 import { connect } from "react-redux"
 
 import "../../pages/Contacts/animation/listAnimation.css"
-import {removeContact} from "../../redux/contactOperation.js"
+import { removeContact } from "../../redux/contactOperation.js"
 
 import contactSelector from "../../redux/contactsSelectors.js"
 
-const ContactList = ({ array, deleteItem }) => {
+const ContactList = ({ array, removeContact }) => {
   return (
     <TransitionGroup component="ul" className={style.list}>
       {array.map((item) => (
@@ -17,7 +17,7 @@ const ContactList = ({ array, deleteItem }) => {
           <li className={style.listItem} key={item.id}>
             <span className={style.deskription}>{item.name}</span>
             <span className={style.deskription}>{item.number}</span>
-            <button type="button" onClick={() => deleteItem(item.id)} className={style.btn}>
+            <button type="button" onClick={() => removeContact(item.id)} className={style.btn}>
               <span className={style.btnText}>X</span>
             </button>
           </li>
@@ -30,19 +30,19 @@ const ContactList = ({ array, deleteItem }) => {
 ContactList.propTypes = {
   array: PropTypes.arrayOf(
     PropTypes.exact({
-      id: PropTypes.number,
+      id: PropTypes.string,
       name: PropTypes.string.isRequired,
       number: PropTypes.string.isRequired,
     })
   ),
-  deleteItem: PropTypes.func.isRequired,
+  removeContact: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = (state) => {
   return { array: contactSelector.getFilteredItems(state) }
 }
 const mapDispatchToProps = {
-  deleteItem: removeContact,
+  removeContact,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContactList)

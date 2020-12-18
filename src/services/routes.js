@@ -42,7 +42,7 @@ const routes = [
     private: true,
     restricted: false,
     },
-    {
+  { 
     exact: true,
     component: NotFoundPage,
     private: false,

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 const NotFoundView = () => {
   return (
     <div className="NotFoundWrapper">
-      404. Page, not found.
+      <p> 404. Page, not found.</p>
       <Link to="/"> You can go back to the home page</Link>
     </div>
   )

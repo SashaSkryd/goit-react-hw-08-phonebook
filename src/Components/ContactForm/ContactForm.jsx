@@ -29,7 +29,6 @@ class ContactForm extends Component {
 
     if (this.getIsExist()) {
       this.toggleIsExist()
-      console.log(this.state.isExists)
       setTimeout(() => {
         this.toggleIsExist()
       }, 1500)

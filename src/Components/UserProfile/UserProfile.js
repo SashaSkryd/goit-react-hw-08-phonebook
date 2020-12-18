@@ -1,13 +1,14 @@
-import React from "react";
-import { connect } from "react-redux";
+import React from "react"
+import { connect } from "react-redux"
 
-import  {logout}  from "../../redux/contactOperation.js";
+import { logout } from "../../redux/contactOperation.js"
+import style from "../ContactForm/ContactForm.module.css"
 
 const UserProfile = (props) => {
-  const { user, logout, loginIn } = props;
-  const { name, email } = user;
+  const { user, logout, loginIn } = props
+  const { name, email } = user
 
-  const handleLogout = () => logout();
+  const handleLogout = () => logout()
 
   return (
     <div>
@@ -15,22 +16,22 @@ const UserProfile = (props) => {
         <>
           <h6>name: {name}</h6>
           <h6>email: {email}</h6>
-          <button type="button" onClick={handleLogout}>
-            Logout
+          <button type="button" onClick={handleLogout} className={style.btn}>
+            <span className={style.btnText}>Logout</span>
           </button>
         </>
       ) : null}
     </div>
-  );
-};
+  )
+}
 
 const mapStateToProps = (state) => ({
   loginIn: Boolean(state.auth.token),
-    user: state.auth.user,
-});
+  user: state.auth.user,
+})
 
 const mapDispatchToProps = {
   logout,
-};
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserProfile);
+export default connect(mapStateToProps, mapDispatchToProps)(UserProfile)
